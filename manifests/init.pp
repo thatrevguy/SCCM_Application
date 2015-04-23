@@ -1,0 +1,2 @@
+class sccm_application {
+}
