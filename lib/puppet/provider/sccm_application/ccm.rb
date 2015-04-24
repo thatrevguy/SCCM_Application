@@ -22,7 +22,8 @@ class CCM
     application = self.list.get('name', name)
     ccm_application_class = WIN32OLE.connect("winmgmts://localhost/root/ccm/clientSDK:CCM_Application")
     ccm_application_class.invoke(method, application.id, application.revision, true, 0, 'Normal', false)
-    while self.list.get('name', name).installstate != install_state
+    while application.installstate != install_state
+      application = self.list.get('name', name)
       sleep 1
     end
   end
