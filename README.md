@@ -78,4 +78,4 @@ This module is tested on the following platforms:
 Submit issues or pull requests to [GitHub](https://github.secureserver.net/ECM/SCCM_Application)
 
 ##Release-Notes
-* 0.0.1 Currently has no logic for 'waiting' or 'failed' evaluation states. Meaning custom type could hang indefinitely.
+* 0.0.1 Currently has no logic for 'waiting' or 'failed' evaluation states. Type can potentially hang indefinitely if package requires interaction or fails during install.
