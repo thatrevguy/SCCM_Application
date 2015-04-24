@@ -12,8 +12,19 @@ class WIN32OLE
 end
 
 class CCM
-  class << self
-    attr_accessor :list
+  def self.list
+    session = WIN32OLE.connect("winmgmts://localhost/root/ccm/clientSDK")
+    session.ExecQuery("select * from CCM_Application")
+  end
+
+  def self.begin(method, name)
+    method == 'install' ? install_state = "Installed" : install_state = "NotInstalled"
+    application = self.list.get('name', name)
+    ccm_application_class = WIN32OLE.connect("winmgmts://localhost/root/ccm/clientSDK:CCM_Application")
+    ccm_application_class.invoke(method, application.id, application.revision, true, 0, 'Normal', false)
+    while self.list.get('name', name).installstate != install_state
+      sleep 1
+    end
   end
 end
 
@@ -24,8 +35,6 @@ Puppet::Type.type(:sccm_application).provide :windows do
   mk_resource_methods
 
   def self.instances
-    wmi_session = WIN32OLE.connect("winmgmts://localhost/root/ccm/clientSDK")
-	CCM.list = wmi_session.ExecQuery("select * from CCM_Application")
 	CCM.list.each.collect do |application|
     if application.InstallState == "Installed"
 	  state = :present
@@ -66,6 +75,10 @@ Puppet::Type.type(:sccm_application).provide :windows do
   end
 
   def flush
-
+    if @property_flush[:ensure] == :present
+      CCM.begin('install', @resource[:name])
+    else
+      CCM.begin('uninstall', @resource[:name])
+    end
   end
 end
