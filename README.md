@@ -67,6 +67,8 @@ Checks if a SCCM package meets set ensure condition.
 
 ##Limitations
 
+Requires SCCM environment with Software Center installed on clients.
+
 This module is tested on the following platforms:
 
 * Windows Server 2012 R2
@@ -75,7 +77,7 @@ This module is tested on the following platforms:
 * Windows Server 2008
 
 ##Development
-Submit issues or pull requests to [GitHub](https://github.secureserver.net/ECM/SCCM_Application)
+Submit issues or pull requests to [GitHub](https://github.com/hathoward/sccm_application)
 
 ##Release-Notes
 * 0.0.1 Currently has no logic for 'waiting' or 'failed' evaluation states. Calling type instance will hang indefinitely if a package requires interaction or fails during install.
