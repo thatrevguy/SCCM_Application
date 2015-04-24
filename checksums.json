@@ -1,0 +1,8 @@
+{
+  "LICENSE": "67cb6c21c51a712a83496423ffd942f0",
+  "README.md": "54e83879a60d187875a906ca2056c96a",
+  "lib/puppet/provider/sccm_application/ccm.rb": "82f99c12f975c4a58d1f5dbff223a7d9",
+  "lib/puppet/type/sccm_application.rb": "0b0d4218432618155670894e09944788",
+  "manifests/init.pp": "04754500c8f6e7e42c1b94953cbc6b32",
+  "metadata.json": "02e9f27e11ed19947d093d7178682be0"
+}

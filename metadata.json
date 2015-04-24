@@ -27,4 +27,7 @@
     }
   ],
   "description": "Module for managing install/uninstall of advertised SCCM packages.",
+  "dependencies": [
+  
+  ]
 }
